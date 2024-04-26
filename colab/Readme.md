@@ -7,3 +7,7 @@
 # Then mount the drive to colab 
 
 ![image](https://github.com/vansh-seth/Detection-and-traking-using-yolov5/assets/111755254/3a420cb5-d8c0-4e9e-a4f4-b3991a5b295a)
+
+# Get yolo v5 model from github
+
+https://github.com/ultralytics/yolov5.git
