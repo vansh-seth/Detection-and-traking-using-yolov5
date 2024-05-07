@@ -13,7 +13,7 @@ class YOLO_Pred():
         self.nc = data_yaml['nc']
         
         #load YOLO model
-        self.yolo = cv2.dnn.readNetFromONNX('./Model6/weights/best.onnx')
+        self.yolo = cv2.dnn.readNetFromONNX('./Model14/weights/best.onnx')
         self.yolo.setPreferableBackend(cv2.dnn.DNN_BACKEND_OPENCV)
         self.yolo.setPreferableTarget(cv2.dnn.DNN_TARGET_CPU)
 
@@ -48,11 +48,11 @@ class YOLO_Pred():
         for i in range(len (detections)):
             row = detections[i]
             confidence = row[4]
-            if confidence > 0.01:
+            if confidence > 0.4:
                 class_score = row[5:].max()
                 class_id = row[5:].argmax()
         
-                if class_score > 0.01:
+                if class_score > 0.25:
                     cx,cy,w,h = row[0:4]
         
                     left = int((cx-0.5*w)*x_factor)
@@ -69,7 +69,7 @@ class YOLO_Pred():
         boxes_np = np.array(boxes).tolist()
         confidences_np = np.array(confidences).tolist()
         
-        index = cv2.dnn.NMSBoxes(boxes_np,confidences_np,0.01,0.01).flatten()
+        index = cv2.dnn.NMSBoxes(boxes_np,confidences_np,0.25,0.4).flatten()
         
         
         
